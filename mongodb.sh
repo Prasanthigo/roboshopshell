@@ -6,9 +6,8 @@ RED="\e[31m"
 GREEN="\e[32m"
 ENDCOLOR="\e[0m"
 USERID=$(id -u)
-if[ $USERID -ne 0 ];
-then
-    echo "please execute the script with root permission"
+if [ "$USERID" -ne 0 ]; then
+    echo "Please execute the script with root permissions."
     exit 1
 fi
 VALIDATE()
