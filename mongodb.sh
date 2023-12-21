@@ -1,4 +1,4 @@
-DATE=$(date + %F)
+DATE=$(date +%F)
 LOGS_DIR=/tmp
 SCRIPT_NAME=$0
 LOGFILE=$LOGS_DIR/$SCRIPT_NAME-$DATE.log
@@ -6,7 +6,7 @@ RED="\e[31m"
 GREEN="\e[32m"
 ENDCOLOR="\e[0m"
 USERID=$(id -u)
-if[ $USERID -ne 0 ]
+if[ $USERID -ne 0 ];
 then
     echo "please execute the script with root permission"
     exit 1
