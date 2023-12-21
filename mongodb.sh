@@ -19,7 +19,7 @@ VALIDATE()
         echo -e "$2 ...........$GREEN success $ENDCOLOR"
     fi
 }
-cp mongo.repo /etc/yum.repos.d/mongo.repo &>> $LOGFILE
+cp ./mongo.repo /etc/yum.repos.d/mongo.repo &>> $LOGFILE
 VALIDATE $? "COPIED MOGODB REPO"
 yum install mongodb-org -y &>> $LOGFILE
 VALIDATE $? "installing mongo-db"
