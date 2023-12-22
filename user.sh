@@ -41,8 +41,8 @@ curl -L -o /tmp/user.zip https://roboshop-builds.s3.amazonaws.com/user.zip &>> $
 VALIDATE $? "Downloading application code to /tmp"
 cd /app &>> $LOGFILE
 VALIDATE $? "changing to app dir"
-unzip -o /tmp/catalogue.zip &>> $LOGFILE
-VALIDATE $? "unzipping catalogue zip file"
+unzip -o /tmp/user.zip &>> $LOGFILE
+VALIDATE $? "unzipping user zip file"
 npm install &>> $LOGFILE
 VALIDATE $? "Downloading dependencies"
 cp /home/centos/roboshopshell/user.service /etc/systemd/system/user.service &>> $LOGFILE
