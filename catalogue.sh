@@ -44,7 +44,7 @@ unzip -o /tmp/catalogue.zip -y &>> $LOGFILE
 VALIDATE $? "unzipping catalogue zip file"
 npm install &>> $LOGFILE
 VALIDATE $? "Downloading dependencies"
-cp /home/centos/roboshop/catalogue.service /etc/systemd/system/catalogue.service &>> $LOGFILE
+cp /home/centos/roboshopshell/catalogue.service /etc/systemd/system/catalogue.service &>> $LOGFILE
 VALIDATE $? "copying catalogue service"
 systemctl daemon-reload &>> $LOGFILE
 VALIDATE $? "reloading the service"
@@ -52,7 +52,7 @@ systemctl enable catalogue &>> $LOGFILE
 VALIDATE $? "enabling the service"
 systemctl start catalogue &>> $LOGFILE
 VALIDATE $? "starting the service"
-cp /home/centos/roboshop/mongo.repo /etc/yum.repos.d/mongo.repo &>> $LOGFILE
+cp /home/centos/roboshopshell/mongodb.repo /etc/yum.repos.d/mongo.repo &>> $LOGFILE
 VALIDATE $? "copying the mongo repo"
 yum install mongodb-org-shell -y &>> $LOGFILE
 VALIDATE $? "installing the mongodb client"
