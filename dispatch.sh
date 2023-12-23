@@ -49,7 +49,7 @@ cp /home/centos/roboshopshell/dispatch.service /etc/systemd/system/dispatch.serv
 VALIDATE $? "copying service file"
 systemctl daemon-reload &>> $LOGFILE
 VALIDATE $? "reloading the service"
-systemctl enable payment &>> $LOGFILE
+systemctl enable dispatch &>> $LOGFILE
 VALIDATE $? "enabling the service"
-systemctl start payment &>> $LOGFILE
+systemctl start dispatch &>> $LOGFILE
 VALIDATE $? "starting the service"
