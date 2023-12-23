@@ -38,7 +38,7 @@ curl -L -o /tmp/dispatch.zip https://roboshop-builds.s3.amazonaws.com/dispatch.z
 VALIDATE $? "downloding dispatch.zip code"
 cd /app &>> $LOGFILE
 VALIDATE $? "changinging to /app"
-unzip /tmp/dispatch.zip &>> $LOGFILE 
+unzip -o /tmp/dispatch.zip &>> $LOGFILE 
 VALIDATE $? "unzipping dispatch.zip"
 go mod init dispatch &>> $LOGFILE
 go get &>> $LOGFILE
