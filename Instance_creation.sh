@@ -12,11 +12,9 @@ do
     else
         Instance_Type="t2.micro"
     echo "creating $i instance"
-    Ip_Address=$(aws ec2 run-instances \
+    aws ec2 run-instances \
     --image-id $Image_Id \
     --instance-type $Instance_Type \
     --security-group-ids $Security_Group_Id \
-    --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=$i}]') |
-    jq -r '.instances[0].PrivateIpAddress')
+    --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=$i}]'
 done
-
