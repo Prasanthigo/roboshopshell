@@ -11,6 +11,7 @@ do
         Instance_Type="t3.medium"
     else
         Instance_Type="t2.micro"
+    fi
     echo "creating $i instance"
     aws ec2 run-instances \
     --image-id $Image_Id \
