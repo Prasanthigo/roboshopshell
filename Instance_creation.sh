@@ -1,17 +1,22 @@
 #!/bin/bash
-NAMES=("Mongodb" "web" "Catalogue" "Cart" "Shipping" "User" "Mysql" "Redis" "RabbitMq" "Dispatch" "Payment")
-Instance_Type=""
-Security_Group_Id="sg-03385513c7e65e046"
-Image_Id="ami-03265a0778a880afb"
-Ip_Address=""
+
+NAMES=("mongodb" "redis" "mysql" "rabbitmq" "catalogue" "user" "cart" "shipping" "payment" "dispatch" "web")
+INSTANCE_TYPE=""
+IMAGE_ID=ami-03265a0778a880afb
+SECURITY_GROUP_ID=sg-03385513c7e65e046
+#DOMAIN_NAME=joindevops.online
+
+# if mysql or mongodb instance_type should be t3.medium , for all others it is t2.micro
+
 for i in "${NAMES[@]}"
-do
-    if [[ $i==Mongodb || $i==Mysql ]];
+do  
+    if [[ $i == "mongodb" || $i == "mysql" ]]
     then
-        Instance_Type="t3.medium"
+        INSTANCE_TYPE="t3.medium"
     else
-        Instance_Type="t2.micro"
+        INSTANCE_TYPE="t2.micro"
     fi
     echo "creating $i instance"
-    aws ec2 run-instances --image-id $Image_Id --instance-type $Instance_Type --security-group-ids $Security_Group_Id --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=$i}]" 
+    IP_ADDRESS=$(aws ec2 run-instances --image-id $IMAGE_ID  --instance-type $INSTANCE_TYPE --security-group-ids $SECURITY_GROUP_ID --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=$i}]" | jq -r '.Instances[0].PrivateIpAddress')
+    echo "created $i instance: $IP_ADDRESS"
 done
